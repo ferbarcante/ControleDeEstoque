@@ -21,24 +21,31 @@ public class Program {
         int escolha;
 
         do {
-            System.out.println("------------------------------------------");
-            System.out.println(" 0 – Camisa\n" +
-                    "1 – Saia\n" +
-                    "2 – Cinto\n" +
-                    "3 – Pulseira\n" +
-                    "4 – Saída de praia\n" +
-                    "5 – Sair do sistema");
-            System.out.println("------------------------------------------");
+            try {
+                System.out.println("------------------------------------------");
+                System.out.println(" 0 – Camisa\n" +
+                        "1 – Saia\n" +
+                        "2 – Cinto\n" +
+                        "3 – Pulseira\n" +
+                        "4 – Saída de praia\n" +
+                        "5 – Sair do sistema");
+                System.out.println("------------------------------------------");
 
-            System.out.print("Escolha uma opção: ");
-            escolha = scanner.nextInt();
+                System.out.print("Escolha uma opção: ");
+                escolha = scanner.nextInt();
 
-            if (escolha >= 0 && escolha < itens.length) {
-                // Executar a venda e reposição de estoque
-                itens[escolha].venda();
-                itens[escolha].reposicaoEstoque();
-            } else if (escolha != itens.length) {
-                System.out.println("Opção inválida. Tente novamente.");
+                if (escolha >= 0 && escolha < itens.length) {
+                    // Executar a venda e reposição de estoque
+                    itens[escolha].venda();
+                    itens[escolha].reposicaoEstoque();
+                } else if (escolha != itens.length) {
+                    System.out.println("Opção inválida. Tente novamente.");
+                }
+            } catch (Exception e) {
+                // Captura exceções relacionadas à entrada do usuário
+                System.out.println("Erro na entrada. Certifique-se de inserir um número inteiro.");
+                scanner.nextLine();
+                escolha = -1;
             }
 
         } while (escolha != itens.length);
